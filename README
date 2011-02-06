@@ -1,0 +1,31 @@
+
+SIPSIMPLE SDK examples
+======================
+
+This is a collection of examples built with the SIPSIMPLE SDK (http://sipsimpleclient.com).
+Some of them are built for SylkServer (http://sylkserver.com) a SIP application server and
+others are just plain examples on top of SIPSIMPLE SDK.
+
+
+SylkServer applications:
+-----------------------
+
+    - jamesbond: it will play the jamesbond tune (not included) to every caller.
+    - chucknorrismessenger: a Chuck Norris fact will be sent back to the sender of
+      a SIP MESSAGE.
+    - chucknorrismessenger2: a Chuck Norris fact will be sent back to the sender for
+      each chat message received in a chat session.
+    - twittersearch: reply with last 15 tweets about the selected topic (user part of
+      the request URI) to each chat message received in a chat stream.
+
+
+Standalone scripts:
+------------------
+
+    - sipsimple_hello_world: really simple SIP user agent which will call 3333@sip2sip.info
+      as soon as the application starts.
+    - sipsimple_hello_world2: simple SIP user agent which will call the selected SIP URI.
+    - sipsimple_waveplayer: calls the selected SIP URI and when the session starts the
+      selected wav file is played back in the audio stream.
+
+
