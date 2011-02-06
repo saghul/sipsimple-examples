@@ -15,6 +15,7 @@ SylkServer applications:
       a SIP MESSAGE.
     - chucknorrismessenger2: a Chuck Norris fact will be sent back to the sender for
       each chat message received in a chat session.
+    - audioconf: bridges all incoming calls in a single conference room.
     - twittersearch: reply with last 15 tweets about the selected topic (user part of
       the request URI) to each chat message received in a chat stream.
 
