@@ -3,13 +3,13 @@ import os
 from cmd import Cmd
 
 from application.notification import NotificationCenter, IObserver
-from application.python.util import Null
+from application.python import Null
 from threading import Event
 from zope.interface import implements
 
 from sipsimple.account import AccountManager
 from sipsimple.application import SIPApplication
-from sipsimple.configuration.backend.file import FileBackend
+from sipsimple.storage import FileStorage
 from sipsimple.core import ToHeader, SIPURI
 from sipsimple.lookup import DNSLookup, DNSLookupError
 from sipsimple.session import Session
@@ -28,7 +28,7 @@ class TestApplication(object):
         notification_center.add_observer(self, sender=self.application)
 
     def start(self):
-        self.application.start(FileBackend(os.path.realpath('test-config')))
+        self.application.start(FileStorage(os.path.realpath('test-config')))
 
     def stop(self):
         self.application.stop()
@@ -64,7 +64,7 @@ class OutgoingCallHandler(object):
             account = AccountManager().default_account
             self.session = Session(account)
             NotificationCenter().add_observer(self, sender=self.session)
-            self.session.connect(callee, routes, [AudioStream(account)])
+            self.session.connect(callee, routes, [AudioStream()])
 
     def hangup(self):
         if self.session is None:
