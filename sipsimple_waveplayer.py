@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -9,7 +11,7 @@ from threading import Event
 from sipsimple.account import AccountManager
 from sipsimple.application import SIPApplication
 from sipsimple.audio import WavePlayer
-from sipsimple.configuration.backend.file import FileBackend
+from sipsimple.storage import FileStorage
 from sipsimple.configuration.settings import SIPSimpleSettings
 from sipsimple.core import SIPURI, SIPCoreError, ToHeader
 from sipsimple.lookup import DNSLookup, DNSLookupError
@@ -32,7 +34,7 @@ class SimpleCallApplication(SIPApplication):
     def call(self, options):
         self.callee = options.target
         self._wave_file = options.filename
-        self.start(FileBackend('test-config'))
+        self.start(FileStorage('test-config'))
 
     @run_in_green_thread
     def _NH_SIPApplicationDidStart(self, notification):
@@ -104,5 +106,3 @@ if __name__ == '__main__':
     if application.session:
         application.session.end()
     application.ended.wait()
-
-

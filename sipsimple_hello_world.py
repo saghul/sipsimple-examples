@@ -4,7 +4,7 @@ from threading import Event
 
 from sipsimple.account import AccountManager
 from sipsimple.application import SIPApplication
-from sipsimple.configuration.backend.file import FileBackend
+from sipsimple.storage import FileStorage
 from sipsimple.core import SIPURI, ToHeader
 from sipsimple.lookup import DNSLookup, DNSLookupError
 from sipsimple.session import Session
@@ -23,7 +23,7 @@ class SimpleCallApplication(SIPApplication):
 
     def call(self, callee):
         self.callee = callee
-        self.start(FileBackend('test-config'))
+        self.start(FileStorage('test-config'))
 
     @run_in_green_thread
     def _NH_SIPApplicationDidStart(self, notification):
@@ -35,7 +35,7 @@ class SimpleCallApplication(SIPApplication):
         else:
             account = AccountManager().default_account
             self.session = Session(account)
-            self.session.connect(self.callee, routes, [AudioStream(account)])
+            self.session.connect(self.callee, routes, [AudioStream()])
 
     def _NH_SIPSessionGotRingIndication(self, notification):
         print 'Ringing!'
